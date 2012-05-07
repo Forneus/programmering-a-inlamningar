@@ -1,6 +1,37 @@
 "use strict"
 var draw = startCanvas("maincanvas");
 
+function notstreck(ypos) {
+    draw.raw().moveTo(700, ypos);
+    draw.raw().lineTo(100, ypos);
+    // draw.raw().stroke();
+};
+
+// draw.setCurColor("rgba(150, 150, 0, 0.5)");
+for (var i=100; i < 201; i += 25) {
+    notstreck(i);
+}
+for (var i=300; i < 401; i += 25) {
+    notstreck(i);
+}
+// Utan denna extra stroke blir linjen grå och inte svart - knepigt!
+draw.raw().stroke();
+draw.raw().stroke();
+
+/*
+var lines = [];
+
+lines [0] =
+lines [1] =
+lines [2] =
+lines [3] =
+lines [4] =
+lines [5] =
+lines [6] =
+lines [7] =
+lines [8] =
+lines [9] =
+
 draw.raw().moveTo(700, 100);
 draw.raw().lineTo(100, 100);
 draw.raw().stroke();
@@ -20,32 +51,8 @@ draw.raw().stroke();
 draw.raw().moveTo(700, 200);
 draw.raw().lineTo(100, 200);
 draw.raw().stroke();
+*/
 
-
-
-
-
-
-
-draw.raw().moveTo(700, 300);
-draw.raw().lineTo(100, 300);
-draw.raw().stroke();
-
-draw.raw().moveTo(700, 325);
-draw.raw().lineTo(100, 325);
-draw.raw().stroke();
-
-draw.raw().moveTo(700, 350);
-draw.raw().lineTo(100, 350);
-draw.raw().stroke();
-
-draw.raw().moveTo(700, 375);
-draw.raw().lineTo(100, 375);
-draw.raw().stroke();
-
-draw.raw().moveTo(700, 400);
-draw.raw().lineTo(100, 400);
-draw.raw().stroke();
 
 // beginPath?
 
