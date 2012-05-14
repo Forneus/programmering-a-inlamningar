@@ -7,7 +7,8 @@ function notstreck(ypos) {
     // draw.raw().stroke();
 };
 
-// draw.setCurColor("rgba(150, 150, 0, 0.5)");
+draw.setCurColor("black");
+draw.raw().beginPath();
 for (var i=100; i < 201; i += 25) {
     notstreck(i);
 }
@@ -15,9 +16,10 @@ for (var i=300; i < 401; i += 25) {
     notstreck(i);
 }
 // Utan denna extra stroke blir linjen grå och inte svart - knepigt!
+draw.raw().closePath();
 draw.raw().stroke();
 draw.raw().stroke();
-
+// fill color också?
 /*
 var lines = [];
 
@@ -56,12 +58,12 @@ draw.raw().stroke();
 
 // beginPath?
 
+// \u2669
+
+draw.text("\u2669", 100, 200, "#000", 50);
 
 
 
 
-
-
-
-// TODO:Remember to check for unicode-symbols, or consider painting them yourself.
+// TODO:Remember to check for unicode-symbols
 // quarternote: hexadecimal: u2669      G clef: (U+1D11E)
