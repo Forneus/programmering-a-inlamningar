@@ -35,6 +35,13 @@ function startCanvas(id) {
         getCurColor : function () {
             return curColor;
         },
+        setCurFont : function (font) {
+         curFont = font;
+         return this;
+        },
+        getCurFont : function () {
+         return curFont;
+        },
         circle : function (x, y, r, color, log) {
         	context2D.save();
             context2D.fillStyle = color || this.getCurColor();

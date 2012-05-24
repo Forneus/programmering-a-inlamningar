@@ -56,15 +56,31 @@ draw.raw().lineTo(100, 200);
 draw.raw().stroke();
 */
 
+function fixedFromCharCode(codePt) {
+    if (codePt > 0xFFFF) {
+        codePt -= 0x10000;
+        return String.fromCharCode(0xD800 + (codePt >> 10), 0xDC00 + (codePt & 0x3FF));
+    }
+    else {
+        return String.fromCharCode(codePt);
+    }
+}
+
+var fullnote  = fixedFromCharCode(0x1D15D);
+var halfnote  = fixedFromCharCode(0x1D15E);
+var quartnote = fixedFromCharCode(0x1D15F);
+var eigthnote = fixedFromCharCode(0x1D160);
+var gclef     = fixedFromCharCode(0x1D11E);
+
+
+
+
 
 // beginPath?
 
 // \u2669
 
-draw.text("\u1D11E", 150, 100, "#000", 80);
 
-draw.text("\u2669", 200, 195, "#000", 80);
-draw.text("\u2669", 300, 170, "#000", 80);
 
 
 // object.onkeypress=
@@ -74,39 +90,56 @@ draw.text("\u2669", 300, 170, "#000", 80);
 // Försökt hitta lösningar på att avgöra vilken knapp som trycks för att kunna utföra en funktion, men hittils inte hittat någon lösning. Koden som följer är test på ifall det funkar.
 
 
-/*
-function drawnote(e){
-var evtobj=window.event? event : e //distinguish between IE's explicit event object (window.event) and Firefox's implicit.
-var unicode=evtobj.charCode? evtobj.charCode : evtobj.keyCode
+
+/* function drawnote(e){
+var unicode = e.keyCode;
 var actualkey=String.fromCharCode(unicode)
 if (actualkey=="a")
 draw.text("\u2669", 300, 170, "#000", 80);
 if (actualkey=="z")
-document.body.style.fontSize="100%"
+} */
+
+//document.body.style.fontSize="100%"
+
+
+
+
+// document.onkeydown=drawnote
+
+
+draw.setCurFont("Code2001");
+
+var set = 202, space = 58, startleft = 175, fontsize = 130;
+draw.text(gclef, 100, set-5, "#000", fontsize);
+for ( i = 0; i < 9; i += 1 ) {
+    draw.text(halfnote, i*space + startleft, set - 12.5 * i, "#000", fontsize);
+    // i*space = avstånd mellan noter + indrag från kanten
+    // set är y-koordinat för placering på nedersta notlinjen
+    // 12.5*i är ett steg upp (25 pixlar mellan linjerna)
 }
-document.onkeypress=drawnote
-
-/*
-
-
+set = 402;
+draw.text(gclef, 100, set-5, "#000", fontsize);
+for ( i = 0; i < 9; i += 1 ) {
+    draw.text(eigthnote, i*space + startleft, set - 12.5 * i, "#000", fontsize);
+}
 
 
 
 // Här är en hittils irrelevant del av programmet, som jag jobbar med när jag kommer till steget att manuellt kunna välja vad för slags not som skall skrivas ut.
 
-/*  document.getElementById("Helnot").onclick = function () {
-      draw.text("\u2669", 400, 170, "#000", 80);
+  document.getElementById("Helnot").onclick = function () {
+      draw.text(fullnote, 400, 170, "#000", 130);
 }
 document.getElementById("Halvnot").onclick = function () {
-    draw.text("\u2669", 400, 170, "#000", 80);
+    draw.text(halfnote, 400, 170, "#000", 130);
 }
 document.getElementById("Fjärdedelsnot").onclick = function () {
-    draw.text("\u2669", 400, 170, "#000", 80);
+    draw.text(quartnote, 400, 170, "#000", 130);
 }
 document.getElementById("Åttondelsnot").onclick = function () {
-    draw.text("\u2669", 400, 170, "#000", 80);
+    draw.text(eigthnote, 400, 170, "#000", 130);
 }
-*/
+
 
 
 
