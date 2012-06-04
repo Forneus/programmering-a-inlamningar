@@ -21,40 +21,6 @@ draw.raw().closePath();
 draw.raw().stroke();
 
 // fill color också?
-/*
-var lines = [];
-
-lines [0] =
-lines [1] =
-lines [2] =
-lines [3] =
-lines [4] =
-lines [5] =
-lines [6] =
-lines [7] =
-lines [8] =
-lines [9] =
-
-draw.raw().moveTo(700, 100);
-draw.raw().lineTo(100, 100);
-draw.raw().stroke();
-
-draw.raw().moveTo(700, 125);
-draw.raw().lineTo(100, 125);
-draw.raw().stroke();
-
-draw.raw().moveTo(700, 150);
-draw.raw().lineTo(100, 150);
-draw.raw().stroke();
-
-draw.raw().moveTo(700, 175);
-draw.raw().lineTo(100, 175);
-draw.raw().stroke();
-
-draw.raw().moveTo(700, 200);
-draw.raw().lineTo(100, 200);
-draw.raw().stroke();
-*/
 
 function fixedFromCharCode(codePt) {
     if (codePt > 0xFFFF) {
@@ -71,21 +37,6 @@ var halfnote  = fixedFromCharCode(0x1D15E);
 var quartnote = fixedFromCharCode(0x1D15F);
 var eigthnote = fixedFromCharCode(0x1D160);
 var gclef     = fixedFromCharCode(0x1D11E);
-
-
-
-
-
-// beginPath?
-
-// \u2669
-
-
-
-
-// object.onkeypress=
-
-
 
 // Försökt hitta lösningar på att avgöra vilken knapp som trycks för att kunna utföra en funktion, men hittils inte hittat någon lösning. Koden som följer är test på ifall det funkar.
 
@@ -104,13 +55,15 @@ if (actualkey=="z")
 
 
 
-// document.onkeydown=drawnote
+document.onkeydown =
 
 
 draw.setCurFont("Code2001");
 
 var set = 202, space = 58, startleft = 175, fontsize = 130;
 draw.text(gclef, 100, set-5, "#000", fontsize);
+draw.text(gclef, 100, set+195, "#000", fontsize);
+/*
 for ( i = 0; i < 9; i += 1 ) {
     draw.text(halfnote, i*space + startleft, set - 12.5 * i, "#000", fontsize);
     // i*space = avstånd mellan noter + indrag från kanten
@@ -118,31 +71,41 @@ for ( i = 0; i < 9; i += 1 ) {
     // 12.5*i är ett steg upp (25 pixlar mellan linjerna)
 }
 set = 402;
-draw.text(gclef, 100, set-5, "#000", fontsize);
+
 for ( i = 0; i < 9; i += 1 ) {
     draw.text(eigthnote, i*space + startleft, set - 12.5 * i, "#000", fontsize);
 }
-
+*/  
 
 
 // Här är en hittils irrelevant del av programmet, som jag jobbar med när jag kommer till steget att manuellt kunna välja vad för slags not som skall skrivas ut.
 
-  document.getElementById("Helnot").onclick = function () {
-      draw.text(fullnote, 400, 170, "#000", 130);
+var noty = 165;
+var plats = 0;
+
+document.getElementById("Helnot").onclick = function () {
+     if ( plats > 8 ) {
+        noty = noty + 200;
+        plats = 0;
+    }
+    draw.circle(startleft+space*plats, noty, 10, "#000", true);
+    plats +=1;
+}
+
+function drawNote(note) {
+    if ( plats > 8 ) {
+        noty = noty + 200;
+        plats = 0;
+    }
+    draw.text(note, startleft+space*plats, noty, "#000", 130);
+    plats +=1;
 }
 document.getElementById("Halvnot").onclick = function () {
-    draw.text(halfnote, 400, 170, "#000", 130);
+    drawNote(halfnote);
 }
 document.getElementById("Fjärdedelsnot").onclick = function () {
-    draw.text(quartnote, 400, 170, "#000", 130);
+    drawNote(quartnote);
 }
 document.getElementById("Åttondelsnot").onclick = function () {
-    draw.text(eigthnote, 400, 170, "#000", 130);
+    drawNote(eigthnote);
 }
-
-
-
-
-// TODO NOTE: +/- 25 pixlar för noter, precis som notstrecken
-// TODO:Remember to check for unicode-symbols
-// quarternote: hexadecimal: u2669      G clef: (U+1D11E)

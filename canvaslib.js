@@ -46,9 +46,11 @@ function startCanvas(id) {
         	context2D.save();
             context2D.fillStyle = color || this.getCurColor();
             context2D.beginPath();
+            context2D.lineWidth = 4;
             context2D.arc(x, y, r, 0, Math.PI * 2, true);
             context2D.closePath();
-            context2D.fill();
+            context2D.stroke();
+            //context2D.fill();
         	context2D.restore();
             if ( log ) {
                 console.log("Draw " + color + " colored circle at " + x + "/" + y + ", radius was " + r);
