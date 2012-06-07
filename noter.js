@@ -55,7 +55,7 @@ if (actualkey=="z")
 
 
 
-document.onkeydown =
+//document.onkeydown =
 
 
 draw.setCurFont("Code2001");
