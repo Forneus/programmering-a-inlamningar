@@ -4,7 +4,8 @@ function startCanvas(id) {
         totalWidth  = canvas.width,
         totalHeight = canvas.height,
         colors      = ["red", "pink", "green", "lime", "orange", "yellow", "maroon", "silver", "grey", "black", "blue", "navy", "lightblue"],
-        curColor    = "black";
+        curColor    = "black",
+        curFont     = "sans-serif";
 
     // Find position of canvas relative to the page (thanks PPK)
     // TODO: Recalculate on window resize and fullscreen toggle
@@ -36,11 +37,11 @@ function startCanvas(id) {
             return curColor;
         },
         setCurFont : function (font) {
-         curFont = font;
-         return this;
+            curFont = font;
+            return this;
         },
         getCurFont : function () {
-         return curFont;
+            return curFont;
         },
         circle : function (x, y, r, color, log) {
         	context2D.save();
@@ -91,7 +92,7 @@ function startCanvas(id) {
         },
         text : function(text, x, y, color, size) {
         	context2D.save();
-            context2D.font = size + "px sans-serif";
+            context2D.font = size + "px " + this.getCurFont();
             context2D.fillStyle = color || this.getCurColor();
             context2D.fillText(text, x, y);
         	context2D.restore();
