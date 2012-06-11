@@ -76,7 +76,7 @@ document.getElementById("Helnot").onclick = function () {
         noty = noty + 200;
         plats = 0;
     }
-    draw.circle(startleft+space*plats, noty-3, 11, "#000", true);
+    draw.circle(startleft+space*plats+21, noty-3, 11, "#000", true);
     plats +=1;
 }
 
